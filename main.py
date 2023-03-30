@@ -4,6 +4,12 @@ import datetime as dt
 from random import choice
 import smtplib
 
+new_data = [{"name": "Them", "email": "thememail@gmail.com", "year": 1970, "month": 4, "day": 30}]
+
+file_name = "birthdays.csv"
+new_data_file = pandas.DataFrame(new_data)
+new_data_file.to_csv(file_name, index=False)
+
 # DATA ENTRY SECTION and updating dict - YOU CAN MODIFY FOR MORE THAN ONE TIME USE
 name = input("Enter receiver's first name: ").title()
 receiver_email = input("Enter receiver's email: ").lower()
@@ -12,12 +18,11 @@ m_birth = int(input("Enter receiver's email: month of birth: "))
 d_birth = int(input("Enter receiver's email: date of birth: "))
 
 field_name_ids = ['name', 'email', 'year', 'month', 'day']
-new_data = {"name": name, "email": receiver_email, "year": y_birth, "month": m_birth, "day": d_birth}
+latest_data = {"name": name, "email": receiver_email, "year": y_birth, "month": m_birth, "day": d_birth}
 
-#
 with open("birthdays.csv", 'a', newline="") as data_file:
     contents = csv.DictWriter(data_file, fieldnames=field_name_ids)
-    contents.writerow(new_data)
+    contents.writerow(latest_data)
 
 # DATETIME MODULE
 now = dt.datetime.now()
@@ -45,8 +50,8 @@ for receiver in working_data:
         new_letter = letter.replace(PLACEHOLDER, f"{receiver_name}")
 
         # SENDING AUTOMATED EMAILS
-        PASSWORD = "use_your_own"
-        EMAIL = "myemail@gmail.com"
+        PASSWORD = "your_special_password"
+        EMAIL = "testemails334e@gmail.com"
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(user=EMAIL, password=PASSWORD)
