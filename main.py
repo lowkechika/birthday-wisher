@@ -4,8 +4,7 @@ import datetime as dt
 from random import choice
 import smtplib
 
-# To avoid any errors later in the code, best to manually enter your first entry on your list. 
-# There's probably a simpler way but I'm too lazy to look into it
+# There's probably a simpler way to do this but I'm too lazy to look into it atm
 
 # DATA ENTRY SECTION and updating dict - YOU CAN MODIFY FOR MORE THAN ONE TIME USE
 name = input("Enter receiver's first name: ").title()
