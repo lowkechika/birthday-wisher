@@ -54,7 +54,7 @@ for receiver in working_data:
         # REPLACING PLACEHOLDER
         new_letter = letter.replace(PLACEHOLDER, f"{receiver_name}")
 
-        # SENDING AUTOMATED EMAILS
+        # FINALLY SENDING THE EMAILS
         PASSWORD = "your_special_password" # use your own
         EMAIL = "testemails334e@gmail.com" # use your own
         with smtplib.SMTP("smtp.gmail.com") as connection: # best to check further if you're using other providers i.e. yahoo
