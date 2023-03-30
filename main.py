@@ -7,25 +7,28 @@ import smtplib
 # To avoid any errors later in the code, best to manually enter your first entry on your list. 
 # There's probably a simpler way but I'm too lazy to look into it
 
-new_data = [{"name": "Them", "email": "thememail@gmail.com", "year": 1970, "month": 4, "day": 30}]
-
-file_name = "birthdays.csv"
-new_data_file = pandas.DataFrame(new_data)
-new_data_file.to_csv(file_name, index=False)
-
 # DATA ENTRY SECTION and updating dict - YOU CAN MODIFY FOR MORE THAN ONE TIME USE
 name = input("Enter receiver's first name: ").title()
 receiver_email = input("Enter receiver's email: ").lower()
 y_birth = int(input("Enter receiver's year of birth: "))
-m_birth = int(input("Enter receiver's email: month of birth: "))
-d_birth = int(input("Enter receiver's email: date of birth: "))
+m_birth = int(input("Enter receiver's month of birth: "))
+d_birth = int(input("Enter receiver's date of birth: "))
 
 field_name_ids = ['name', 'email', 'year', 'month', 'day']
 latest_data = {"name": name, "email": receiver_email, "year": y_birth, "month": m_birth, "day": d_birth}
 
-with open("birthdays.csv", 'a', newline="") as data_file:
-    contents = csv.DictWriter(data_file, fieldnames=field_name_ids)
-    contents.writerow(latest_data)
+try:
+    pandas.read_csv("birthdays.csv")
+
+except FileNotFoundError:
+    new_data = [{"name": name, "email": receiver_email, "year": y_birth, "month": m_birth, "day": d_birth}]
+    new_data_file = pandas.DataFrame(new_data)
+    new_data_file.to_csv("birthdays.csv", index=False)
+
+else:
+    with open("birthdays.csv", 'a', newline="") as data_file:
+        contents = csv.DictWriter(data_file, fieldnames=field_name_ids)
+        contents.writerow(latest_data)
 
 # DATETIME MODULE
 now = dt.datetime.now()
