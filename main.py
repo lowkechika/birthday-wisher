@@ -4,6 +4,9 @@ import datetime as dt
 from random import choice
 import smtplib
 
+# To avoid any errors letter in the code, best to manually enter the first entrues on your list. 
+# There's probably a dsimpler way but I'm too lazy to look into it
+
 new_data = [{"name": "Them", "email": "thememail@gmail.com", "year": 1970, "month": 4, "day": 30}]
 
 file_name = "birthdays.csv"
